@@ -3,12 +3,13 @@ package com.savaprix.ecom.listenerutility;
 import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
 
-public class RetryListenerImp implements IRetryAnalyzer{
+import com.savaprix.ecom.fileutility.Constants;
+
+public class RetryListenerImp implements IRetryAnalyzer, Constants{
 	int count = 0;
-	int maxCount = 5;
 	@Override
 	public boolean retry(ITestResult result) {
-		if (count < maxCount) {
+		if (count < RETRY_ANALYZER_COUNT) {
 			count++;
 			return true;
 		}

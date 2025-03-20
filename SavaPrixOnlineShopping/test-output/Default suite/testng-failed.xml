@@ -7,14 +7,11 @@
         <methods>
           <include name="beforeClass"/>
           <include name="logout"/>
-          <include name="removeProductsFromPaymentPendingPage"/>
           <include name="login"/>
-          <include name="placeOrder"/>
           <include name="registerAsUserTest"/>
           <include name="beforeSuite"/>
           <include name="afterClass"/>
           <include name="afterSuite"/>
-          <include name="loginWithInvalidCred"/>
         </methods>
       </class> <!-- com.savaprix.ecom.homepage.HomePageTest -->
     </classes>

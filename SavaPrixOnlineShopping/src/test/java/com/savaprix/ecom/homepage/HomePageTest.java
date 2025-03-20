@@ -3,6 +3,7 @@ package com.savaprix.ecom.homepage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.IRetryAnalyzer;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -27,15 +28,14 @@ public class HomePageTest extends BaseClass {
 	String contact = eU.getDataFromExcel(sheetName, 1, 2);
 	String email = eU.getDataFromExcel(sheetName, 1, 1);
 
-	@Test(groups = "Smoke")
+	@Test(groups = "Smoke", retryAnalyzer = com.savaprix.ecom.listenerutility.RetryListenerImp.class)
 	public void registerAsUserTest() {
-		
 		HomePage hp = new HomePage(driver);
 		MyAccounts ma = new MyAccounts(driver);
 		HomePageLoggedIn hpli = new HomePageLoggedIn(driver);
 		String sheetName = "UserData";
 		String un = eU.getDataFromExcel(sheetName, 1, 0);
-		String pw = eU.getDataFromExcel(sheetName, 1, 3);
+		String pw = eU.getDataFromExcel(sheetName, 1, 3); 
 		String contact = eU.getDataFromExcel(sheetName, 1, 2);
 		String email = eU.getDataFromExcel(sheetName, 1, 1);
 		
@@ -48,7 +48,7 @@ public class HomePageTest extends BaseClass {
 		hpli.logoutAsUser();
 	}
 	
-	@Test(groups = "Regression")
+	@Test(groups = "Regression", retryAnalyzer = com.savaprix.ecom.listenerutility.RetryListenerImp.class)
 	public void addProductToCart() {
 		HomePage hp = new HomePage(driver);
 		ProductsInformationPage pip = new ProductsInformationPage(driver);
@@ -69,7 +69,7 @@ public class HomePageTest extends BaseClass {
 		hpli.logoutAsUser();
 	}
 	
-	@Test(groups = "Regression")
+	@Test(groups = "Regression", retryAnalyzer = com.savaprix.ecom.listenerutility.RetryListenerImp.class)
 	public void addProductToWishList() {
 		HomePage hp = new HomePage(driver);
 		ProductsInformationPage pip = new ProductsInformationPage(driver);
@@ -90,7 +90,7 @@ public class HomePageTest extends BaseClass {
 	}
 	
 	
-	@Test(groups = "Regression")
+	@Test(groups = "Regression", retryAnalyzer = com.savaprix.ecom.listenerutility.RetryListenerImp.class)
 	public void addProductFromWishlistToCart() {
 		HomePage hp = new HomePage(driver);
 		ProductsInformationPage pip = new ProductsInformationPage(driver);
@@ -110,7 +110,7 @@ public class HomePageTest extends BaseClass {
 		
 	}
 	
-	@Test(groups = "Regression")
+	@Test(groups = "Regression", retryAnalyzer = com.savaprix.ecom.listenerutility.RetryListenerImp.class)
 	public void addProductToCartAndUpdateAddress() {
 		HomePage hp = new HomePage(driver);
 		ProductsInformationPage pip = new ProductsInformationPage(driver);
@@ -137,7 +137,7 @@ public class HomePageTest extends BaseClass {
 	}
 	
 	
-	@Test(groups = "Smoke")
+	@Test(groups = "Smoke", retryAnalyzer = com.savaprix.ecom.listenerutility.RetryListenerImp.class)
 	public void placeOrder() {
 		HomePage hp = new HomePage(driver);
 		ProductsInformationPage pip = new ProductsInformationPage(driver);
@@ -154,7 +154,7 @@ public class HomePageTest extends BaseClass {
 		
 		pip.getAddToCartBtn().click();
 		wU.alertPopupAccept(driver);
-		wU.scrollByAmount(driver, 0, 400);
+		wU.scrollByAmount(driver, 0, SCROLL_AMOUNT_FOR_SIGNUP);
 		mcp.getCheckoutBtn().click();
 		pp.getInternetBankingRadioBtn().click();
 		pp.getSubmitBtn().click();
@@ -163,7 +163,7 @@ public class HomePageTest extends BaseClass {
 		hpli.logoutAsUser();
 	}
 	
-	@Test(groups = "Regression")
+	@Test(groups = "Regression", retryAnalyzer = com.savaprix.ecom.listenerutility.RetryListenerImp.class)
 	public void completePendingOrder() {
 		HomePage hp = new HomePage(driver);
 		ProductsInformationPage pip = new ProductsInformationPage(driver);
@@ -182,7 +182,7 @@ public class HomePageTest extends BaseClass {
 		
 		pip.getAddToCartBtn().click();
 		wU.alertPopupAccept(driver);
-		wU.scrollByAmount(driver, 0, 400);
+		wU.scrollByAmount(driver, 0, SCROLL_AMOUNT_FOR_SIGNUP);
 		mcp.getCheckoutBtn().click();
 		
 		hp.getMyAccountBtn().click();
@@ -198,7 +198,7 @@ public class HomePageTest extends BaseClass {
 	}
 	
 	
-	@Test(groups = "Regression")
+	@Test(groups = "Regression", retryAnalyzer = com.savaprix.ecom.listenerutility.RetryListenerImp.class)
 	public void removeProductsFromPaymentPendingPage() {
 		HomePage hp = new HomePage(driver);
 		ProductsInformationPage pip = new ProductsInformationPage(driver);
@@ -226,7 +226,7 @@ public class HomePageTest extends BaseClass {
 		hpli.logoutAsUser();
 	}
 	
-	@Test(groups = "Smoke")
+	@Test(groups = "Smoke", retryAnalyzer = com.savaprix.ecom.listenerutility.RetryListenerImp.class)
 	public void changeAccountDetails() {
 		HomePage hp = new HomePage(driver);
 		MyAccountsLoggedIn mali = new MyAccountsLoggedIn(driver);
@@ -243,7 +243,7 @@ public class HomePageTest extends BaseClass {
 		hpli.logoutAsUser();
 	}
 	
-	@Test(groups = "Smoke")
+	@Test(groups = "Smoke", retryAnalyzer = com.savaprix.ecom.listenerutility.RetryListenerImp.class)
 	public void loginWithInvalidCred() {
 		HomePage hp = new HomePage(driver);
 		hp.userLoginFromHomePage("akhil@gmail.com", "1234567");
